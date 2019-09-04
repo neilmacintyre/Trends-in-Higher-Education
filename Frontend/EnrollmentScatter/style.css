@@ -1,0 +1,127 @@
+*{
+    font-family: sans-serif;
+    
+}
+
+body{
+    background: #ffffff
+}
+
+
+#detailed_sel{
+    visibility: hidden;
+}
+
+#legend{
+    width:1000px;
+}
+
+#chart {
+    font: 12px Arial;
+    display: flex;
+    flex-direction: column;
+}
+
+.legendKey{
+    display: inline-flex;
+    margin-right:10px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    align-items: center;
+    padding: 3px;
+}
+.legendKey p {
+    color: white;
+    margin: 4px 6px;
+    display: inline-block; 
+}
+.remove{
+    display: inline-block;
+}
+.remove svg{
+    display: block;
+}
+.remove:hover{
+    background: rgba(250,250,250 ,0.4);             
+    border-radius: 100%;
+}
+.infoHover{
+    position: fixed;
+    background-color: aqua;
+}
+
+
+#search{
+    margin-left: 500px;
+    width: 200px;
+    border: 0px;
+
+    border-bottom: 1px solid black;
+}
+
+
+.graphPath{
+    stroke:steelblue;
+    stroke-width:1.5;
+    fill:none;
+}
+.keyText{
+    fill: white;
+}
+.axis path,
+.axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering:crispEdges;
+}
+.removeButton path{
+    transform: scale(0.7);
+}
+.legend {
+    font-size: 12px;
+    font-weight: bold;
+    fill: white;
+}
+
+
+#info_pane{
+    display: inline-flex;
+    flex-direction: column;
+
+    vertical-align: top;
+    width: 500px;
+    margin-right: 25px;
+    background: #eceff1;
+    align-items:stretch
+}
+#oveflow_fill{
+    flex-grow: 1;
+
+}
+#info_pane h2{
+    text-align: center;
+}
+
+#graph_pane{
+    display: inline-block;
+}
+#major_selectors{
+    display: flex;
+    max-width: 1000px;
+}
+
+html, body, #info_pane{
+    height: 100%;
+}
+
+.card{
+    background: #ffffff;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.06);
+    border: 1px solid rgba(150,150,150,0.3);
+    border-bottom-color: rgba(125,125,125,0.3);
+    margin: 15px;
+    padding: 15px;
+    border-radius: 4px;
+}

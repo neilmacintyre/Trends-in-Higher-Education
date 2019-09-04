@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Enrollment Scatter Plot</title>
+        <script src="./src/libs/d3.v5.js"></script>
+        <script src="./src/libs/jquery-3.4.1.js"></script>
+        <script type="module" src="./src/index.js"></script>
+    
+        
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="./style.css" type="text/css"/>
+    </head>
+    
+    <body>
+        <div id='info_pane'>
+            <h2>Interactive Trends in Higher Education</h2>
+
+            <div class='card'>
+                <h4>Introduction</h4>
+                <p> Labor... Varous sources have been keeping track of these trends... The goal of this interactice ...</p>
+            </div>
+
+            <div class='card'>
+                <h4>Enrollment Trends by Major</h4>
+                <p>
+                    It may be common knowledge that the <a href='#total'>total number of people who obtain college
+                    degrees </a> has increased over the past 50 years, what may be less apperent how the distribution
+                    <br><br>
+
+                    Many majors tend change together:
+                        <a href>Chemisty physics</a>
+
+                    <br><br>
+
+                    The majors that have expreienced the biggest changes
+
+                </p>    
+            </div>
+
+            <div class='card'>
+                    <h4> Sources </h4>
+                    <p>
+                        [1] https://ncsesdata.nsf.gov/ids/
+    
+                    </p>    
+                </div>
+            <div id='oveflow_fill'></div>
+        </div>
+        <div id='graph_pane'>
+            <div id='major_selectors'>
+                <select>
+                    <option> Classification of Instructional Program (CIP)* </option>
+                    <option> Standardized Catagories</option>   
+                </select>
+                <select id='broad_sel'></select>
+                <select id='detailed_sel'></select>
+            </div>
+
+            <div id='enrollment_line_graph'></div>
+
+            <p style="display: inline-block">Display As: </p>
+            <select id='df_type'>
+                <option id='display_enrollment'> Enrollment </option>
+                <option id='display_percent'> Percentage of Total Enrollment </option>
+                <option id='display_yoy'> Year over Year</option>   
+            </select>
+            
+        
+        </div>
+
+    </body>
+
+</html>
