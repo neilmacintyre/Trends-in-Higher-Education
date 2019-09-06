@@ -48,7 +48,6 @@ function enrollment2YOY(enrollment){
             prevYearKey = yearKey;
         }
     };
-    console.log('YOy',yoy);
     
     return yoy;
 

@@ -1,14 +1,29 @@
 import {majorStr2ID} from './misc.js';
+import updateScales from './updateScales.js'
 
-export default function updateLines(graphState){
-    const majors = graphState.data.selectedMajors;
-    const data = graphState.data.display;
-    const colorScale = graphState.colorScale;
-    const line = graphState.enrollmentLine;
-    const graphSVG = graphState.graphSVG;
 
+export default function updateLines( store){
+    const majors = store.getState().selectedMajors;
+    const transformMap = store.getState().transformMap;
+    const data = transformMap(store.getState().data);
+    const colorScale = store.getState().colorScale;
+    //const line = store.getState().enrollmentLine;
+    const svg = store.getState().svg;
+
+    const scales = updateScales(store); // It would probably amke sense to store scale in the store since it is used in multiple places
+                                        // needs to be caluclated on majors selected change so it should be added to that recuder
+                                        // or would that be considered an api call -- ie not pure
+
+    const xScale = scales.xScale;
+    const yScale = scales.yScale;
+
+
+    const line =
+        d3.line()
+            .x(d => xScale(d.year))
+            .y(d => yScale(d.enrollment));
     
-    const p = graphSVG
+    const p = svg
         .selectAll('.graphPath')
             .data(majors, majorStr2ID);
 

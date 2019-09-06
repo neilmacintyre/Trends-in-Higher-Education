@@ -1,35 +1,39 @@
 import {majorStr2ID} from './misc.js';
+import { removeMajor } from './redux/actions.js';
 
-export default function updateLegendKeys(graphState){
-    const majors = graphState.data.selectedMajors;
-    const hierarchy =  graphState.data.majorHierarchy;
-    const colorScale = graphState.colorScale;
-    const update = graphState.update;
+
+
+export default function updateLegendKeys(store){
+    const majors = store.getState().selectedMajors;
+    const hierarchy = store.getState().majorHierarchy;
+    const colorScale = store.getState().colorScale;
 
     d3.selectAll('.legendKey').remove(); // clear any existing keys'
     majors.forEach(
         major => {
             if (major.length == 2){
-                insertKeyLegend(hierarchy[major].name,colorScale(majorStr2ID(major)), majorStr2ID(major), majors,update);
+                insertKeyLegend(hierarchy[major].name,colorScale(majorStr2ID(major)),  majors, store, major);
             }
             else if (major.length == 5){
                 // CIP 4 DATA
                 const cip2 =  major.split('.')[0];
-                insertKeyLegend(hierarchy[cip2][major].name,colorScale(majorStr2ID(major)), majorStr2ID(major), majors, update);
+                insertKeyLegend(hierarchy[cip2][major].name,colorScale(majorStr2ID(major)), majors,store,major);
             }else{
                 console.error('INVALID MAJOR FORMAT')
             }
         }
     );
 }
-function insertKeyLegend(text, color, id, majors, update){
+function insertKeyLegend(text, color, majors, store, major){
+    const id =  majorStr2ID(major);
+
     var legend = document.getElementById('legend');
     // TODO depeending on order of execution this might not show up in the right place in html
     // in case the legend has not yet been built
     if (!legend){
         legend = document.createElement("div");
         legend.setAttribute('id', 'legend');
-        document.querySelector('#graph_pane').append(legend);
+        document.querySelector('#enrollment_line_graph').append(legend);
     }
     let key = document.createElement("div");
     legend.append(key);
@@ -56,11 +60,12 @@ function insertKeyLegend(text, color, id, majors, update){
     removeIcon.setAttribute('class',"remove");
 
     removeIcon.addEventListener('click', ()=>{
-        majors.splice(majors.indexOf(id), 1);
+        store.dispatch(removeMajor(major))
+
         d3.select(`#path_${id}`)
             .remove();
         legend.removeChild(document.getElementById(`key_${id}`));
-        update(majors);
+        
     });
 
    key.append(removeIcon)

@@ -1,14 +1,13 @@
-// Load drop down
-function loadD2Select(graphState){
-    const majors = graphState.data.selectedMajors;
-    const hierarchy =  graphState.data.majorHierarchy;
-    const update = graphState.update;
+import { ADD_MAJOR, addMajor, changeTransform } from "./redux/actions.js";
 
+// Load drop down
+function loadD2Select(store){
+    const hierarchy =  store.getState().majorHierarchy;
 
     let d2Select = $('#broad_sel');
     
     d2Select.append($('<option>').html('Total Enrollment').attr('key','-1')
-        .on('click',  (element) => loadD4Select(hierarchy, element)
+        .on('click',  (element) => loadD4Select(hierarchy, element,store)
         ));
     for (let catagory in hierarchy){
         d2Select.append(
@@ -16,19 +15,17 @@ function loadD2Select(graphState){
                 .html(hierarchy[catagory].name)
                 .attr('key',catagory)
                 .on('click', (element) => {
-                    loadD4Select(graphState, element);
-                    majors.push(hierarchy[catagory].d2);
-                    update();
+                    loadD4Select(element, store);
+                    store.dispatch(addMajor(hierarchy[catagory].d2));
+                 
                 })
             );
     }	
    }
 
 
-function loadD4Select(graphState, element){
-    const majors = graphState.data.selectedMajors;
-    const hierarchy =  graphState.data.majorHierarchy;
-    const update = graphState.update;
+function loadD4Select(element, store){
+    const hierarchy =  store.getState().majorHierarchy;
 
     const key = $(element.currentTarget).attr('key');
     // clear anything that is already there
@@ -46,8 +43,7 @@ function loadD4Select(graphState, element){
                         .html(hierarchy[key][catagory].name)
                         .attr('key',`${catagory}`)
                         .on('click', (element) => {
-                            majors.push(catagory);
-                            update();
+                            store.dispatch(addMajor(catagory));
                         })
                     );
             }
@@ -58,18 +54,19 @@ function loadD4Select(graphState, element){
     }
 }
 
-function attachDFSelection(graphState){
+import { enrollment2Percent, enrollment2YOY } from './calc.js';
+function attachDFSelection(store){
     $('#display_percent').on('click', () => {
-        graphState.data.display = graphState.data.enrollmentAsPercentage;
-        graphState.update(graphState)
+        store.dispatch(changeTransform(enrollment2Percent));
+        
     });
     $('#display_enrollment').on('click', () => {
-        graphState.data.display = graphState.data.enrollment;
-        graphState.update(graphState)
+        store.dispatch(changeTransform(x=>x));
+        
     });
     $('#display_yoy').on('click', () => {
-        graphState.data.display = graphState.data.enrollmentAsYOY;
-        graphState.update(graphState)
+        store.dispatch(changeTransform(enrollment2YOY));
+    
     });
 
     
