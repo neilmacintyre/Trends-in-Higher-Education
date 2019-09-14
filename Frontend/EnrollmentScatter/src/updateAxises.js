@@ -43,7 +43,7 @@ export default function updateAxises(store){
     
     // X Axis label
     svg.append("text")
-        .attr('id', '#x_label')
+        .attr('id', 'x_label')
         .attr('class', 'axis_label')
         .attr("transform", "translate(" + width/2 + ", " +(height + 36)+")")
         .text('Year');
@@ -60,7 +60,9 @@ export default function updateAxises(store){
     const {width: y_axis_width} =  document.querySelector('.axis.y').getBoundingClientRect();
     
     svg.select('#y_label')
-        .attr('transform', `rotate(-90)  translate(-${y_label_width/2 + height/2}, -${y_label_height/2 + y_axis_width})`);        
+        .attr('transform', `rotate(-90)  translate(-${y_label_width/2 + height/2}, -${y_label_height/2 + y_axis_width})`); 
+    
+    console.log(svg.select('#y_label').node().innerHTML, store.getState());
 
 
 }

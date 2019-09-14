@@ -58,16 +58,15 @@ function loadD4Select(element, store){
 import { enrollment2Percent, enrollment2YOY } from './calc.js';
 function attachDFSelection(store){
     $('#display_percent').on('click', () => {
-        store.dispatch(changeTransform(enrollment2Percent), Y_AXIS_LABELS.percentageOfTotal);
+        store.dispatch(changeTransform(enrollment2Percent, Y_AXIS_LABELS.percentageOfTotal));
         
     });
     $('#display_enrollment').on('click', () => {
-        store.dispatch(changeTransform(x=>x), Y_AXIS_LABELS.enrollment);
+        store.dispatch(changeTransform(x=>x,Y_AXIS_LABELS.enrollment));
         
     });
     $('#display_yoy').on('click', () => {
-        store.dispatch(changeTransform(enrollment2YOY), Y_AXIS_LABELS.yearOverYearChange);
-    
+        store.dispatch(changeTransform(enrollment2YOY , Y_AXIS_LABELS.yearOverYearChange));
     });
 
     
