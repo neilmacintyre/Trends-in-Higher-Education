@@ -1,5 +1,5 @@
 import { ADD_MAJOR, REMOVE_MAJOR, UPDATE_HIERARCHY, UPDATE_DATA, UPDATE_SVG, UPDATE_COLOR_SCALE, CHANGE_TRANSFORM } from './actions.js';
-
+import { Y_AXIS_LABELS } from '../constants.js';
 
 export default function graphApp(state, action){
     if(state == undefined){
@@ -8,6 +8,7 @@ export default function graphApp(state, action){
             majorHierarchy: {},
             enrollmentLines: {},
             transformMap: (d) => d, // intialize to identity function
+            yAxisLabel: Y_AXIS_LABELS.enrollment,
             data: {},
             svg: {}
         };
@@ -35,7 +36,7 @@ export default function graphApp(state, action){
                 return Object.assign({}, state, {colorScale: action.colorScale});
 
         case CHANGE_TRANSFORM:
-                return Object.assign({}, state, {transformMap: action.transformMap});
+                return Object.assign({}, state, {transformMap: action.transformMap, yAxisLabel: action.yAxisLabel});
 
         
         default:

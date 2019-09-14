@@ -1,4 +1,5 @@
-import { ADD_MAJOR, addMajor, changeTransform } from "./redux/actions.js";
+import { addMajor, changeTransform } from "./redux/actions.js";
+import { Y_AXIS_LABELS} from './constants.js'
 
 // Load drop down
 function loadD2Select(store){
@@ -57,15 +58,15 @@ function loadD4Select(element, store){
 import { enrollment2Percent, enrollment2YOY } from './calc.js';
 function attachDFSelection(store){
     $('#display_percent').on('click', () => {
-        store.dispatch(changeTransform(enrollment2Percent));
+        store.dispatch(changeTransform(enrollment2Percent), Y_AXIS_LABELS.percentageOfTotal);
         
     });
     $('#display_enrollment').on('click', () => {
-        store.dispatch(changeTransform(x=>x));
+        store.dispatch(changeTransform(x=>x), Y_AXIS_LABELS.enrollment);
         
     });
     $('#display_yoy').on('click', () => {
-        store.dispatch(changeTransform(enrollment2YOY));
+        store.dispatch(changeTransform(enrollment2YOY), Y_AXIS_LABELS.yearOverYearChange);
     
     });
 

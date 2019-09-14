@@ -23,8 +23,8 @@ export function removeMajor(majorCatagory){;
 export function updateHierarchy(majorHierarchy){
     return {type: UPDATE_HIERARCHY, majorHierarchy};
 }
-export function changeTransform(transformMap){
-    return {type: CHANGE_TRANSFORM, transformMap};
+export function changeTransform(transformMap, yAxisLabel){
+    return {type: CHANGE_TRANSFORM, transformMap, yAxisLabel};
 }
 export function updateData(data){
     return {type: UPDATE_DATA, data};

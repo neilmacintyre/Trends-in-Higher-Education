@@ -1,10 +1,11 @@
 *{
     font-family: sans-serif;
-    
+
 }
 
+
 body{
-    background: #ffffff
+  background: #ffffff;
 }
 
 
@@ -124,4 +125,10 @@ html, body, #info_pane{
     margin: 15px;
     padding: 15px;
     border-radius: 4px;
+
+    
+}
+
+.axis_label{
+    transform: translateZ(270deg)
 }
