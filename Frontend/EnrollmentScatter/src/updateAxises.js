@@ -62,7 +62,5 @@ export default function updateAxises(store){
     svg.select('#y_label')
         .attr('transform', `rotate(-90)  translate(-${y_label_width/2 + height/2}, -${y_label_height/2 + y_axis_width})`); 
     
-    console.log(svg.select('#y_label').node().innerHTML, store.getState());
-
 
 }

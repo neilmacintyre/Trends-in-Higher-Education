@@ -22,6 +22,7 @@ function enrollment2Percent(enrollment){
 
 }
 
+// TODO at present this is not very insightfull as the data is fairly noisy year to year. Applying a hamming filiter would address this issue
 function enrollment2YOY(enrollment){
     
 
