@@ -1,5 +1,6 @@
 import {majorStr2ID} from './misc.js';
-import updateScales from './updateScales.js'
+import updateScales from './updateScales.js';
+import tooltip from './tooltip.js';
 
 
 export default function updateLines( store){
@@ -7,7 +8,6 @@ export default function updateLines( store){
     const transformMap = store.getState().transformMap;
     const data = transformMap(store.getState().data);
     const colorScale = store.getState().colorScale;
-    //const line = store.getState().enrollmentLine;
     const svg = store.getState().svg;
 
     const scales = updateScales(store); // It would probably amke sense to store scale in the store since it is used in multiple places
@@ -28,7 +28,8 @@ export default function updateLines( store){
             .data(majors, majorStr2ID);
 
     // UPDATE line
-    p.transition()
+    const lineTranistion = 
+       p.transition()
         .duration(1000)
         .attr('d', maj => line(data.map(row => {return {year:row.year,  enrollment:row[maj]}})))
         
@@ -42,7 +43,7 @@ export default function updateLines( store){
         .duration(1000)
         .style("stroke", maj => colorScale(majorStr2ID(maj)));
         
-    p.exit().remove()
-        
-   
+    p.exit().remove();   
+
+    tooltip(store, lineTranistion);
 }

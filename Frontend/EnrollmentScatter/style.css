@@ -129,6 +129,15 @@ html, body, #info_pane{
     
 }
 
-.axis_label{
-    transform: translateZ(270deg)
+#tooltip{	
+    position: absolute;			
+    text-align: center;			
+    width: 100px;					
+    height: 60px;					
+    padding: 2px;				
+    font: 12px sans-serif;
+    background: lightgrey;		
+    border: 0px;		
+    border-radius: 4px;			
+    pointer-events: none;
 }
