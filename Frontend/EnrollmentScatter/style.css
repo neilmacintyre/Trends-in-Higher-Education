@@ -141,3 +141,15 @@ html, body, #info_pane{
     border-radius: 4px;			
     pointer-events: none;
 }
+
+
+#enrollment_radial_pie{
+    margin: 0 auto;
+    
+    width: 500px;
+    height: 500px;
+}
+.radial_text{
+    font: 28px sans-serif;
+    fill: grey;
+}

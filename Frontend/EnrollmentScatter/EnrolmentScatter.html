@@ -5,10 +5,12 @@
         <script src="./src/libs/d3.v5.js"></script>
         <script src="./src/libs/jquery-3.4.1.js"></script>
         <script src="./src/libs/redux.js"></script>
+        <script src="./src/libs/ion.rangeSlider.js"></script>
         <script type="module" src="./src/index.js"></script>
     
         
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="./src/libs/ion.rangeSlider.css" />
         <link rel="stylesheet" href="./style.css" type="text/css"/>
     </head>
     
@@ -20,7 +22,7 @@
 
             <div class='card'>
                 <h4>Introduction</h4>
-                <p> Labor... Varous sources have been keeping track of these trends... The goal of this interactice ...</p>
+                <p> Labor... Varous sources have been keeping track of these trends... The goal of this interactice ... is give a perspective on what students are studying where and how much they make after they graduate. In syntheising this data I hope projects can be made regarding the huture of the labor force...</p>
             </div>
 
             <div class='card'>
@@ -36,6 +38,9 @@
                     <br><br>
 
                     The majors that have expreienced the biggest changes
+
+                    <p>Below is a majors that have changed exprienced expontial growth in enrollment over the past 10 years  </p>
+                    <p>Nuerobiology </p>
 
                 </p>    
             </div>
@@ -60,6 +65,7 @@
             </div>
 
             <div id='enrollment_line_graph'></div>
+            
 
             <p style="display: inline-block">Display As: </p>
             <select id='df_type'>
@@ -67,8 +73,13 @@
                 <option id='display_percent'> Percentage of Total Enrollment </option>
                 <option id='display_yoy'> Year over Year</option>   
             </select>
+
+            <div id='enrollment_radial_pie' >
+                <div id='enrollment_radial_pie_graph'></div>
+                <input  type="text" class="js-range-slider" name="my_range" value="" />
+            </div>
+
             
-        
         </div>
 
     </body>

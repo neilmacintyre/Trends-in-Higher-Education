@@ -6,6 +6,7 @@ import { margin, width, height } from './constants.js';
 import graphApp from './redux/reducers.js';
 import { updateHierarchy, updateData, updateSVG, updateColorScale } from './redux/actions.js';
 import updateAxises from './updateAxises.js';
+import radialPieChart from './radialPieChart.js' 
 
 let store = {};
 
@@ -51,6 +52,9 @@ function draw_scatter(data, hierarchy) {
     loadD2Select(store)
     attachDFSelection(store);
 
+
+    // insert the radial pie chart
+    radialPieChart(store);
 }
 
 

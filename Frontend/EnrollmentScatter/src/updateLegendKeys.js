@@ -63,9 +63,7 @@ function insertKeyLegend(text, color, majors, store, major){
         store.dispatch(removeMajor(major))
 
         d3.select(`#path_${id}`)
-            .remove();
-       // legend.removeChild(document.getElementById(`key_${id}`));
-        
+            .remove();   
     });
 
    key.append(removeIcon)
